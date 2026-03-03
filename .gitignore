@@ -1,0 +1,26 @@
+# Ambientes Virtuais
+venv/
+env/
+.env
+
+# Arquivos de Build/Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de Banco de Dados / Saída
+*.sql
+*.sqlite
+*.db
+
+# Logs e Relatórios
+*.log
+*.csv
+output.log
+relatorio_inconsistencias.csv
+aer_dump.txt
+
+# Arquivos do IDE
+.vscode/
+.idea/
