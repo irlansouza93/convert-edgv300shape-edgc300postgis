@@ -31,9 +31,10 @@ def main():
     }
     
     # Dicionário útil para lookup de classes do PostGIS por nome
-    pg_classes_dict = {
-        cls["nome"]: cls for cls in pg_data["classes"]
-    }
+    pg_classes_dict = {}
+    for cl_list in ["classes", "extension_classes"]:
+        for cls in pg_data.get(cl_list, []):
+            pg_classes_dict[cls["nome"].lower()] = cls
     
     # Dicionário útil para lookup de domínios do PostGIS
     pg_domains_dict = {
@@ -85,12 +86,23 @@ def main():
             regras_cls = conversao_dict.get(full_shp_class_name.upper(), {})
             
             attr_translations = {}
-            val_translations = {}
+            # Armazena globalmente a traducao com base no nome da coluna original (SHP)
+            val_translations_global = {}
+            
+            # --- NOVA LÓGICA DE DADOS GLOBAIS ÓRFÃOS ---
+            # Carregar mapeamentos da raiz do json que o usuário forneceu como dicionários universais
+            for g_attr in conversao_data.get("mapeamento_atributos", []):
+                if "traducao" in g_attr:
+                    val_translations_global[g_attr["attr_B"]] = {
+                        str(t["valor_B"]).strip().lower(): t["valor_A"] for t in g_attr["traducao"]
+                    }
+                    
+            # --- DADOS ESPECÍFICOS DA CLASSE ---
             for m in regras_cls.get("mapeamento_atributos", []):
                 attr_translations[m["attr_B"]] = m["attr_A"]
                 if "traducao" in m:
                     # Dicionário de tradução manual: { "valor string shp em minúsculas": código_inteiro_pg }
-                    val_translations[m["attr_B"]] = {
+                    val_translations_global[m["attr_B"]] = {
                         str(t["valor_B"]).strip().lower(): t["valor_A"] for t in m["traducao"]
                     }
             
@@ -144,8 +156,9 @@ def main():
                                 reverse_map[key_str.lower()] = val_int
                             
                             # Injetar a lista de traduções manuais para estender/sobrepor as padrões
-                            if shp_attr_name in val_translations:
-                                for t_val_str, t_val_int in val_translations[shp_attr_name].items():
+                            # Agora procuramos na piscina global usando a chave raiz do SHP
+                            if shp_attr_name in val_translations_global:
+                                for t_val_str, t_val_int in val_translations_global[shp_attr_name].items():
                                     reverse_map[t_val_str] = t_val_int
                                     reverse_map[t_val_str.upper()] = t_val_int
                                     reverse_map[t_val_str.lower()] = t_val_int

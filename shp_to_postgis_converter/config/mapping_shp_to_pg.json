@@ -2076,6 +2076,43 @@
                     "default_value": 0
                 },
                 {
+                    "shp_attr": "FINPAT",
+                    "pg_attr": "finalidadepatio",
+                    "pg_type": "smallint",
+                    "is_domain": true,
+                    "domain_name": "finalidade_patio",
+                    "value_map": {
+                        "Desconhecida": 0,
+                        "DESCONHECIDA": 0,
+                        "desconhecida": 0,
+                        "Depósito temporário de cargas e contêineres": 2,
+                        "DEPÓSITO TEMPORÁRIO DE CARGAS E CONTÊINERES": 2,
+                        "depósito temporário de cargas e contêineres": 2,
+                        "Estacionamento de veículos": 3,
+                        "ESTACIONAMENTO DE VEÍCULOS": 3,
+                        "estacionamento de veículos": 3,
+                        "Estacionamento de locomotivas": 4,
+                        "ESTACIONAMENTO DE LOCOMOTIVAS": 4,
+                        "estacionamento de locomotivas": 4,
+                        "Estacionamento de aeronaves": 5,
+                        "ESTACIONAMENTO DE AERONAVES": 5,
+                        "estacionamento de aeronaves": 5,
+                        "Manobra de cargas": 6,
+                        "MANOBRA DE CARGAS": 6,
+                        "manobra de cargas": 6,
+                        "Manobra de veículos em geral": 7,
+                        "MANOBRA DE VEÍCULOS EM GERAL": 7,
+                        "manobra de veículos em geral": 7,
+                        "Manutenção": 8,
+                        "MANUTENÇÃO": 8,
+                        "manutenção": 8,
+                        "Outros": 99,
+                        "OUTROS": 99,
+                        "outros": 99
+                    },
+                    "default_value": 9999
+                },
+                {
                     "shp_attr": "PUBLICO",
                     "pg_attr": "publico",
                     "pg_type": "smallint",
@@ -2096,8 +2133,7 @@
                 }
             ],
             "default_fields": {
-                "geometriaaproximada": false,
-                "finalidadepatio": 9999
+                "geometriaaproximada": false
             }
         },
         {
@@ -9506,65 +9542,26 @@
                 },
                 {
                     "shp_attr": "TIPOEDIF",
-                    "pg_attr": "tipoedifpubcivil",
+                    "pg_attr": "tipousoedif",
                     "pg_type": "smallint",
                     "is_domain": true,
-                    "domain_name": "tipo_org_civil",
+                    "domain_name": "tipo_uso_edif",
                     "value_map": {
                         "Desconhecido": 0,
                         "DESCONHECIDO": 0,
                         "desconhecido": 0,
-                        "Policial": 1,
-                        "POLICIAL": 1,
-                        "policial": 1,
-                        "Prisional": 2,
-                        "PRISIONAL": 2,
-                        "prisional": 2,
-                        "Cartorial": 3,
-                        "CARTORIAL": 3,
-                        "cartorial": 3,
-                        "Gestão": 4,
-                        "GESTÃO": 4,
-                        "gestão": 4,
-                        "Eleitoral": 5,
-                        "ELEITORAL": 5,
-                        "eleitoral": 5,
-                        "Produção e/ou pesquisa": 6,
-                        "PRODUÇÃO E/OU PESQUISA": 6,
-                        "produção e/ou pesquisa": 6,
-                        "Seguridade social": 7,
-                        "SEGURIDADE SOCIAL": 7,
-                        "seguridade social": 7,
-                        "Câmara municipal": 8,
-                        "CÂMARA MUNICIPAL": 8,
-                        "câmara municipal": 8,
-                        "Assembleia legislativa": 9,
-                        "ASSEMBLEIA LEGISLATIVA": 9,
-                        "assembleia legislativa": 9,
-                        "Autarquia": 10,
-                        "AUTARQUIA": 10,
-                        "autarquia": 10,
-                        "Delegacia de polícia civil": 11,
-                        "DELEGACIA DE POLÍCIA CIVIL": 11,
-                        "delegacia de polícia civil": 11,
-                        "Educação": 12,
-                        "EDUCAÇÃO": 12,
-                        "educação": 12,
-                        "Fórum": 13,
-                        "FÓRUM": 13,
-                        "fórum": 13,
-                        "Fundação": 14,
-                        "FUNDAÇÃO": 14,
-                        "fundação": 14,
-                        "Procuradoria": 15,
-                        "PROCURADORIA": 15,
-                        "procuradoria": 15,
-                        "Secretaria": 16,
-                        "SECRETARIA": 16,
-                        "secretaria": 16,
-                        "Prefeitura": 22,
-                        "PREFEITURA": 22,
-                        "prefeitura": 22,
+                        "Próprio nacional": 1,
+                        "PRÓPRIO NACIONAL": 1,
+                        "próprio nacional": 1,
+                        "Uso da União": 2,
+                        "USO DA UNIÃO": 2,
+                        "uso da união": 2,
+                        "Uso do município": 5,
+                        "USO DO MUNICÍPIO": 5,
+                        "uso do município": 5,
+                        "Uso da UF": 6,
+                        "USO DA UF": 6,
+                        "uso da uf": 6,
                         "Outros": 99,
                         "OUTROS": 99,
                         "outros": 99
@@ -10018,8 +10015,7 @@
                 }
             ],
             "default_fields": {
-                "geometriaaproximada": false,
-                "tipousoedif": 9999
+                "geometriaaproximada": false
             }
         },
         {
@@ -10767,7 +10763,15 @@
                         "prefeitura": 22,
                         "Outros": 99,
                         "OUTROS": 99,
-                        "outros": 99
+                        "outros": 99,
+                        "próprio nacional": 1,
+                        "PRÓPRIO NACIONAL": 1,
+                        "uso da união": 2,
+                        "USO DA UNIÃO": 2,
+                        "uso do município": 5,
+                        "USO DO MUNICÍPIO": 5,
+                        "uso da uf": 6,
+                        "USO DA UF": 6
                     },
                     "default_value": 9999
                 },
@@ -14179,6 +14183,61 @@
                     "default_value": 9999
                 },
                 {
+                    "shp_attr": "TIPOMIL",
+                    "pg_attr": "tipoinstalmilitar",
+                    "pg_type": "smallint",
+                    "is_domain": true,
+                    "domain_name": "tipo_instal_militar",
+                    "value_map": {
+                        "Desconhecido": 0,
+                        "DESCONHECIDO": 0,
+                        "desconhecido": 0,
+                        "Aquartelamento": 12,
+                        "AQUARTELAMENTO": 12,
+                        "aquartelamento": 12,
+                        "Campo de instrução": 13,
+                        "CAMPO DE INSTRUÇÃO": 13,
+                        "campo de instrução": 13,
+                        "Campo de tiro": 14,
+                        "CAMPO DE TIRO": 14,
+                        "campo de tiro": 14,
+                        "Base aérea": 15,
+                        "BASE AÉREA": 15,
+                        "base aérea": 15,
+                        "Distrito naval": 16,
+                        "DISTRITO NAVAL": 16,
+                        "distrito naval": 16,
+                        "Hotel de trânsito": 17,
+                        "HOTEL DE TRÂNSITO": 17,
+                        "hotel de trânsito": 17,
+                        "Delegacia de serviço militar": 18,
+                        "DELEGACIA DE SERVIÇO MILITAR": 18,
+                        "delegacia de serviço militar": 18,
+                        "Quartel general": 20,
+                        "QUARTEL GENERAL": 20,
+                        "quartel general": 20,
+                        "Posto de vigilância": 21,
+                        "POSTO DE VIGILÂNCIA": 21,
+                        "posto de vigilância": 21,
+                        "Posto de policiamento urbano": 22,
+                        "POSTO DE POLICIAMENTO URBANO": 22,
+                        "posto de policiamento urbano": 22,
+                        "Posto de policiamento rodoviário": 23,
+                        "POSTO DE POLICIAMENTO RODOVIÁRIO": 23,
+                        "posto de policiamento rodoviário": 23,
+                        "Capitania dos portos": 24,
+                        "CAPITANIA DOS PORTOS": 24,
+                        "capitania dos portos": 24,
+                        "Base naval": 25,
+                        "BASE NAVAL": 25,
+                        "base naval": 25,
+                        "Outros": 99,
+                        "OUTROS": 99,
+                        "outros": 99
+                    },
+                    "default_value": 9999
+                },
+                {
                     "shp_attr": "ADM",
                     "pg_attr": "administracao",
                     "pg_type": "smallint",
@@ -14530,8 +14589,7 @@
                 }
             ],
             "default_fields": {
-                "geometriaaproximada": false,
-                "tipoinstalmilitar": 9999
+                "geometriaaproximada": false
             }
         },
         {
@@ -18653,7 +18711,15 @@
                         "prefeitura": 22,
                         "Outros": 99,
                         "OUTROS": 99,
-                        "outros": 99
+                        "outros": 99,
+                        "próprio nacional": 1,
+                        "PRÓPRIO NACIONAL": 1,
+                        "uso da união": 2,
+                        "USO DA UNIÃO": 2,
+                        "uso do município": 5,
+                        "USO DO MUNICÍPIO": 5,
+                        "uso da uf": 6,
+                        "USO DA UF": 6
                     },
                     "default_value": 9999
                 },
@@ -19319,7 +19385,15 @@
                         "prefeitura": 22,
                         "Outros": 99,
                         "OUTROS": 99,
-                        "outros": 99
+                        "outros": 99,
+                        "próprio nacional": 1,
+                        "PRÓPRIO NACIONAL": 1,
+                        "uso da união": 2,
+                        "USO DA UNIÃO": 2,
+                        "uso do município": 5,
+                        "USO DO MUNICÍPIO": 5,
+                        "uso da uf": 6,
+                        "USO DA UF": 6
                     },
                     "default_value": 0
                 },
@@ -20519,7 +20593,15 @@
                         "prefeitura": 22,
                         "Outros": 99,
                         "OUTROS": 99,
-                        "outros": 99
+                        "outros": 99,
+                        "próprio nacional": 1,
+                        "PRÓPRIO NACIONAL": 1,
+                        "uso da união": 2,
+                        "USO DA UNIÃO": 2,
+                        "uso do município": 5,
+                        "USO DO MUNICÍPIO": 5,
+                        "uso da uf": 6,
+                        "USO DA UF": 6
                     },
                     "default_value": 9999
                 },
@@ -21179,6 +21261,61 @@
                     "default_value": 0
                 },
                 {
+                    "shp_attr": "TIPOMIL",
+                    "pg_attr": "tipoinstalmilitar",
+                    "pg_type": "smallint",
+                    "is_domain": true,
+                    "domain_name": "tipo_instal_militar",
+                    "value_map": {
+                        "Desconhecido": 0,
+                        "DESCONHECIDO": 0,
+                        "desconhecido": 0,
+                        "Aquartelamento": 12,
+                        "AQUARTELAMENTO": 12,
+                        "aquartelamento": 12,
+                        "Campo de instrução": 13,
+                        "CAMPO DE INSTRUÇÃO": 13,
+                        "campo de instrução": 13,
+                        "Campo de tiro": 14,
+                        "CAMPO DE TIRO": 14,
+                        "campo de tiro": 14,
+                        "Base aérea": 15,
+                        "BASE AÉREA": 15,
+                        "base aérea": 15,
+                        "Distrito naval": 16,
+                        "DISTRITO NAVAL": 16,
+                        "distrito naval": 16,
+                        "Hotel de trânsito": 17,
+                        "HOTEL DE TRÂNSITO": 17,
+                        "hotel de trânsito": 17,
+                        "Delegacia de serviço militar": 18,
+                        "DELEGACIA DE SERVIÇO MILITAR": 18,
+                        "delegacia de serviço militar": 18,
+                        "Quartel general": 20,
+                        "QUARTEL GENERAL": 20,
+                        "quartel general": 20,
+                        "Posto de vigilância": 21,
+                        "POSTO DE VIGILÂNCIA": 21,
+                        "posto de vigilância": 21,
+                        "Posto de policiamento urbano": 22,
+                        "POSTO DE POLICIAMENTO URBANO": 22,
+                        "posto de policiamento urbano": 22,
+                        "Posto de policiamento rodoviário": 23,
+                        "POSTO DE POLICIAMENTO RODOVIÁRIO": 23,
+                        "posto de policiamento rodoviário": 23,
+                        "Capitania dos portos": 24,
+                        "CAPITANIA DOS PORTOS": 24,
+                        "capitania dos portos": 24,
+                        "Base naval": 25,
+                        "BASE NAVAL": 25,
+                        "base naval": 25,
+                        "Outros": 99,
+                        "OUTROS": 99,
+                        "outros": 99
+                    },
+                    "default_value": 0
+                },
+                {
                     "shp_attr": "ADM",
                     "pg_attr": "administracao",
                     "pg_type": "smallint",
@@ -21530,8 +21667,7 @@
                 }
             ],
             "default_fields": {
-                "geometriaaproximada": false,
-                "tipoinstalmilitar": 0
+                "geometriaaproximada": false
             }
         },
         {
@@ -27801,7 +27937,17 @@
                         "reserva biológica – rebio": 4,
                         "Refúgio da vida silvestre – RVS": 5,
                         "REFÚGIO DA VIDA SILVESTRE – RVS": 5,
-                        "refúgio da vida silvestre – rvs": 5
+                        "refúgio da vida silvestre – rvs": 5,
+                        "unidade de conservação não snuc": 1,
+                        "UNIDADE DE CONSERVAÇÃO NÃO SNUC": 1,
+                        "unidade de proteção integral": 2,
+                        "UNIDADE DE PROTEÇÃO INTEGRAL": 2,
+                        "unidade de uso sustentável": 3,
+                        "UNIDADE DE USO SUSTENTÁVEL": 3,
+                        "unidade de conservação": 4,
+                        "UNIDADE DE CONSERVAÇÃO": 4,
+                        "outras unidades protegidas": 5,
+                        "OUTRAS UNIDADES PROTEGIDAS": 5
                     },
                     "default_value": 9999
                 },
@@ -32512,11 +32658,47 @@
                         "não aplicável": 97
                     },
                     "default_value": 0
+                },
+                {
+                    "shp_attr": "FINPAT",
+                    "pg_attr": "finalidadepatio",
+                    "pg_type": "smallint",
+                    "is_domain": true,
+                    "domain_name": "finalidade_patio",
+                    "value_map": {
+                        "Desconhecida": 0,
+                        "DESCONHECIDA": 0,
+                        "desconhecida": 0,
+                        "Depósito temporário de cargas e contêineres": 2,
+                        "DEPÓSITO TEMPORÁRIO DE CARGAS E CONTÊINERES": 2,
+                        "depósito temporário de cargas e contêineres": 2,
+                        "Estacionamento de veículos": 3,
+                        "ESTACIONAMENTO DE VEÍCULOS": 3,
+                        "estacionamento de veículos": 3,
+                        "Estacionamento de locomotivas": 4,
+                        "ESTACIONAMENTO DE LOCOMOTIVAS": 4,
+                        "estacionamento de locomotivas": 4,
+                        "Estacionamento de aeronaves": 5,
+                        "ESTACIONAMENTO DE AERONAVES": 5,
+                        "estacionamento de aeronaves": 5,
+                        "Manobra de cargas": 6,
+                        "MANOBRA DE CARGAS": 6,
+                        "manobra de cargas": 6,
+                        "Manobra de veículos em geral": 7,
+                        "MANOBRA DE VEÍCULOS EM GERAL": 7,
+                        "manobra de veículos em geral": 7,
+                        "Manutenção": 8,
+                        "MANUTENÇÃO": 8,
+                        "manutenção": 8,
+                        "Outros": 99,
+                        "OUTROS": 99,
+                        "outros": 99
+                    },
+                    "default_value": 0
                 }
             ],
             "default_fields": {
-                "geometriaaproximada": false,
-                "finalidadepatio": 0
+                "geometriaaproximada": false
             }
         },
         {
@@ -34896,6 +35078,34 @@
             "default_fields": {
                 "geometriaaproximada": false
             }
+        },
+        {
+            "shp_class": "AUX_Obstaculo_Vertical",
+            "pg_table": "aux_obstaculo_vertical",
+            "pg_class_def": "obstaculo_vertical",
+            "attributes": [
+                {
+                    "shp_attr": "NOME",
+                    "pg_attr": "nome",
+                    "pg_type": "varchar(255)",
+                    "is_domain": false
+                },
+                {
+                    "shp_attr": "ALTITUDE",
+                    "pg_attr": "altitude",
+                    "pg_type": "real",
+                    "is_domain": false,
+                    "default_value": 0.0
+                },
+                {
+                    "shp_attr": "ALTURA",
+                    "pg_attr": "altura",
+                    "pg_type": "real",
+                    "is_domain": false,
+                    "default_value": 0.0
+                }
+            ],
+            "default_fields": {}
         }
     ],
     "domain_mapping": {}

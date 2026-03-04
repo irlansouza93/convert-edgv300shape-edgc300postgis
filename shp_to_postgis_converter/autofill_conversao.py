@@ -20,29 +20,15 @@ def build_class_lookup(master_pg):
 def build_shp_class_lookup(master_shp):
     lookup = {}
     for cls in master_shp.get('classes', []):
-        nome = f"{cls['categoria']}_{cls['nome']}".upper()
+        nome = f"{cls['categoria']}_{cls['nome']}".lower()
         lookup[nome] = cls
     return lookup
 
 def find_best_attribute_match(shp_attr, pg_attrs):
     shp_lower = shp_attr.lower()
-    
-    # Exclude basic ones that map directly
-    if shp_lower in [p['nome'].lower() for p in pg_attrs]:
-        return shp_lower
-        
-    # Attempt prefix match
-    candidates = [p['nome'] for p in pg_attrs if p['nome'].startswith(shp_lower)]
-    if len(candidates) == 1:
-        return candidates[0]
-        
-    # Attempt fuzzy match
     pg_attr_names = [p['nome'] for p in pg_attrs]
-    matches = difflib.get_close_matches(shp_lower, pg_attr_names, n=1, cutoff=0.6)
-    if matches:
-        return matches[0]
-        
-    # Common manual overrides based on EDGV standards
+    
+    # 1. Common manual overrides based on EDGV standards priority (Must execute FIRST)
     overrides = {
         'situaespac': 'situacaoespacial',
         'situafisic': 'situacaofisica',
@@ -56,11 +42,28 @@ def find_best_attribute_match(shp_attr, pg_attrs):
         'homolog': 'homologacao',
         'adm': 'administracao',
         'concess': 'concessionaria',
-        'jurisdicao': 'jurisdicao'
+        'jurisdicao': 'jurisdicao',
+        'finpat': 'finalidadepatio',
+        'tipoedif': 'tipousoedif',
+        'tipomil': 'tipoinstalmilitar'
     }
     
     if shp_lower in overrides and overrides[shp_lower] in pg_attr_names:
         return overrides[shp_lower]
+    
+    # 2. Exclude basic ones that map directly
+    if shp_lower in pg_attr_names:
+        return shp_lower
+        
+    # 3. Attempt prefix match
+    candidates = [p['nome'] for p in pg_attrs if p['nome'].startswith(shp_lower)]
+    if len(candidates) == 1:
+        return candidates[0]
+
+    # 4. Attempt fuzzy match as last resort
+    matches = difflib.get_close_matches(shp_lower, pg_attr_names, n=1, cutoff=0.6)
+    if matches:
+        return matches[0]
         
     return None
 
@@ -74,7 +77,7 @@ def main():
     
     for mapping in conversao.get('mapeamento_classes', []):
         cls_pg_name = mapping['classe_A'].lower()
-        cls_shp_name = mapping['classe_B'].upper()
+        cls_shp_name = mapping['classe_B'].lower()
         
         pg_cls_def = pg_lookup.get(cls_pg_name)
         shp_cls_def = shp_lookup.get(cls_shp_name)
