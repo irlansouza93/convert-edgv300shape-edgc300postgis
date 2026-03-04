@@ -20,7 +20,10 @@ Imagine que você recebeu milhares de arquivos velhos de mapas em formato **Shap
 O projeto obedece ao estado-da-arte de organização de pastas. Ele é dividido em três "mundos" para que não haja confusão:
 
 * 📁 **`docs/` (A Biblioteca):** Onde você está lendo isso. Guarda as Leis de código, Histórias do projeto e FAQs.
-* 📁 **`source-knowlegde/` (O Cérebro e a Matéria Prima):** Aqui ficam os arquivos brutos. Ficam os famosos "Master Files", que são os Dicionários Oficiais da EDGV em formato `.json` (A "gramática" do Banco PostGIS e a do Shapefile). Também é aqui dentro fica o **`conversao_pg-edgv-300_shp-edgv-300_completo.json`**, que é a nossa Enciclopédia Titânica traduzindo tabela por tabela. A pasta *banco-edgv-3-shapefile-populado* guarda todos os seus arquivos físicos de mapa que você deseja converter.
+* 📁 **`source-knowlegde/` (O Cérebro e a Matéria Prima):** Aqui ficam os arquivos brutos. Dentro de `edgv-3-shapefile/` ficam duas coisas críticas:
+  1. *Master Files JSON:* A "gramática" de regras.
+  2. *Arquivos SQL/GPKG Estruturais (`edgv_300.sql`, `edgv_300_extension.sql`, `edgv30.gpkg`):* **Eles não são inúteis!** Esses arquivos são os **Criadores de Banco de Dados**. O nosso conversor gera um arquivo de inserção de dados, mas ele não "cria" as tabelas. Para o nosso conversor funcionar, você precisa ter rodado esses arquivos `.sql` originais do Exército num banco de dados limpo para criar a estrutura (esqueleto) que receberá o nosso mapeamento.
+Também é aqui dentro que fica o **`conversao_pg-edgv-300_shp-edgv-300_completo.json`**, que é a nossa Enciclopédia Titânica traduzindo tabela por tabela. A pasta *banco-edgv-3-shapefile-populado* guarda todos os seus arquivos físicos de mapa originais que você deseja converter.
 * 📁 **`shp_to_postgis_converter/` (A Fábrica/Motor):** Aqui dentro ficam as engrenagens. Os códigos Python que trabalham, a lista de configurações e os robôs fiscais que testam as coisas.
 
 ---
@@ -41,7 +44,8 @@ python main.py
 Esse comando lerá todos os seus shapefiles, enviará as linhas para o tradutor e construirá rapidamente na pasta o arquivo **`output_edgv.sql`**.
 
 ### Etapa 3: Coletar os Frutos
-* **O Código Pronto:** O arquivo `output_edgv.sql` gerado terá instruções `INSERT INTO` em massa. Você só precisa abri-lo e roda-lo no seu Banco de Dados (usando programas como pgAdmin, DBeaver, DBeaver, etc.) e as tabelas lá serão magicamente povoadas já sob as rédeas da EDGV 3.0.
+* **O Código Pronto:** O arquivo `output_edgv.sql` gerado terá instruções `INSERT INTO` em massa. Você só precisa abri-lo e roda-lo no seu Banco de Dados (usando programas como pgAdmin, DBeaver, etc.) e as tabelas lá serão magicamente povoadas já sob as rédeas da EDGV 3.0.
+> **⚠️ Importante:** O banco precisa existir! Se seu banco PostGIS estiver totalmente vazio, você deve executar antes disso os arquivos `edgv_300.sql` e `edgv_300_extension.sql` que estão guardadinhos na pasta `source-knowlegde`, pois são eles que criam as "cascas vazias" das tabelas.
 * **O Relatório Visor:** Na mesma pasta do motor, você verá o `relatorio_inconsistencias.csv`. Se o sistema encontrou em algum do seus poligonos uma "Classe OBRIGATÓRIA" vazia, pra não quebrar o banco, o nosso sistema enviou ela como "Desconhecido" (código 9999 Seguro) e reportou neste CSV a exata placa ou ponte que carecia de digitação, permitindo ao Analista auditar o erro num QGIS sabendo onde apontar.
 
 ---
